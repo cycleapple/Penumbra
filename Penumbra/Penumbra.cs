@@ -118,7 +118,7 @@ public class Penumbra : IDalamudPlugin
     private void SetupApi()
     {
         _services.GetService<IpcProviders>();
-        var itemSheet = _services.GetService<IDataManager>().GetExcelSheet<Item>();
+        var itemSheet = _services.GetService<IDataManager>().GetSafeExcelSheet<Item>();
         _communicatorService.ChangedItemHover.Subscribe(it =>
         {
             if (it is IdentifiedItem { Item.Id.IsItem: true })
