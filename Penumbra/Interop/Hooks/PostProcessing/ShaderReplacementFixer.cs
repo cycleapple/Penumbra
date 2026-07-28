@@ -77,7 +77,10 @@ public sealed unsafe class ShaderReplacementFixer : IDisposable, IRequiredServic
     private readonly ModdedShaderPackageState _characterOcclusionState;
     private readonly ModdedShaderPackageState _hairMaskState;
 
-    public bool Enabled { get; internal set; } = true;
+    // Global 7.3 shader-package layouts are not compatible with the Taiwan
+    // renderer. Even with ModelRenderer.UnkFunc disabled, replacing these
+    // references can leave invalid state for the asynchronous render thread.
+    public bool Enabled { get; internal set; } = false;
 
     public uint ModdedSkinShpkCount
         => _skinState.MaterialCount;
