@@ -77,10 +77,7 @@ public sealed unsafe class ShaderReplacementFixer : IDisposable, IRequiredServic
     private readonly ModdedShaderPackageState _characterOcclusionState;
     private readonly ModdedShaderPackageState _hairMaskState;
 
-    // Global 7.3 shader-package layouts are not compatible with the Taiwan
-    // renderer. Even with ModelRenderer.UnkFunc disabled, replacing these
-    // references can leave invalid state for the asynchronous render thread.
-    public bool Enabled { get; internal set; } = false;
+    public bool Enabled { get; internal set; } = true;
 
     public uint ModdedSkinShpkCount
         => _skinState.MaterialCount;
@@ -143,13 +140,9 @@ public sealed unsafe class ShaderReplacementFixer : IDisposable, IRequiredServic
         _modelRendererOnRenderMaterialHook = hooks.CreateHook<ModelRendererOnRenderMaterialDelegate>("ModelRenderer.OnRenderMaterial",
             Sigs.ModelRendererOnRenderMaterial, ModelRendererOnRenderMaterialDetour,
             !HookOverrides.Instance.PostProcessing.ModelRendererOnRenderMaterial).Result;
-        // The global 7.3/API13 ABI selected by this signature does not match the
-        // Taiwan client. Calling its original function crashes during character
-        // login inside ffxiv_dx11.exe, so keep only this optional shader helper
-        // disabled until a Taiwan-specific signature and delegate are known.
         _modelRendererUnkFuncHook = hooks.CreateHook<ModelRendererUnkFuncDelegate>("ModelRenderer.UnkFunc",
             Sigs.ModelRendererUnkFunc, ModelRendererUnkFuncDetour,
-            false).Result;
+            !HookOverrides.Instance.PostProcessing.ModelRendererUnkFunc).Result;
         _prepareColorTableHook = hooks.CreateHook<MaterialResourceHandle.Delegates.PrepareColorTable>(
             "MaterialResourceHandle.PrepareColorTable",
             Sigs.PrepareColorSet, PrepareColorTableDetour,
@@ -206,7 +199,15 @@ public sealed unsafe class ShaderReplacementFixer : IDisposable, IRequiredServic
          ?? GetStateForModelRendererRender(shpkName)
          ?? GetStateForModelRendererUnk(shpkName) ?? GetStateForColorTable(shpkName);
 
-        if (shpkState != null && shpk != shpkState.DefaultShaderPackage)
+        // The Taiwan client can load built-in shader packages through handles
+        // that differ from the renderer's canonical default handle. Pointer
+        // inequality alone therefore produces false positives and makes the
+        // fixer replace renderer references even when no mods are installed.
+        // A redirected ShPk has a rooted local path; built-in game resources do
+        // not. Keep the pointer check as well so the default remains excluded.
+        if (shpkState != null
+         && shpk != shpkState.DefaultShaderPackage
+         && Utf8GamePath.IsRooted(shpk->FileName.AsSpan()))
             shpkState.TryAddMaterial(mtrlResourceHandle);
     }
 
