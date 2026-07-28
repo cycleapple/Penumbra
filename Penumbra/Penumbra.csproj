@@ -4,8 +4,8 @@
         <Company>absolute gangstas</Company>
         <Product>Penumbra</Product>
         <Copyright>Copyright © 2025</Copyright>
-        <FileVersion>9.0.0.1</FileVersion>
-        <AssemblyVersion>9.0.0.1</AssemblyVersion>
+        <FileVersion>1.5.1.20</FileVersion>
+        <AssemblyVersion>1.5.1.20</AssemblyVersion>
         <OutputPath>bin\$(Configuration)\</OutputPath>
     </PropertyGroup>
 
@@ -16,6 +16,8 @@
 
     <ItemGroup>
       <Compile Remove="Mods\Subclasses\**" />
+      <!-- The TW client has no match for this optional upstream parasol-animation hook. -->
+      <Compile Remove="Interop\Hooks\Animation\SomeParasolAnimation.cs" />
       <EmbeddedResource Remove="Mods\Subclasses\**" />
       <None Remove="Mods\Subclasses\**" />
     </ItemGroup>
