@@ -86,7 +86,7 @@ public unsafe class SchedulerResourceManagementService : IService, IDisposable
 
     private static FrozenDictionary<CiByteString, uint> CreateActionTmbs(IDataManager dataManager)
     {
-        var sheet = dataManager.GetExcelSheet<ActionTimeline>();
+        var sheet = dataManager.GetSafeExcelSheet<ActionTimeline>();
         return sheet.Where(row => !row.Key.IsEmpty).DistinctBy(row => row.Key).ToFrozenDictionary(row => new CiByteString(row.Key, MetaDataComputation.All).Clone(), row => row.RowId);
     }
 }
