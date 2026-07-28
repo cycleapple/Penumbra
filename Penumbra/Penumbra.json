@@ -4,7 +4,7 @@
     "Punchline": "Runtime mod loader and manager.",
     "Description": "Runtime mod loader and manager.",
     "InternalName": "Penumbra",
-    "AssemblyVersion": "1.5.0.6",
+    "AssemblyVersion": "1.5.0.7",
     "RepoUrl": "https://github.com/xivdev/Penumbra",
     "ApplicableVersion": "any",
     "Tags": [ "modding" ],
