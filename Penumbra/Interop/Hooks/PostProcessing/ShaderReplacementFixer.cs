@@ -140,9 +140,13 @@ public sealed unsafe class ShaderReplacementFixer : IDisposable, IRequiredServic
         _modelRendererOnRenderMaterialHook = hooks.CreateHook<ModelRendererOnRenderMaterialDelegate>("ModelRenderer.OnRenderMaterial",
             Sigs.ModelRendererOnRenderMaterial, ModelRendererOnRenderMaterialDetour,
             !HookOverrides.Instance.PostProcessing.ModelRendererOnRenderMaterial).Result;
+        // The global 7.3/API13 ABI selected by this signature does not match the
+        // Taiwan client. Calling its original function crashes during character
+        // login inside ffxiv_dx11.exe, so keep only this optional shader helper
+        // disabled until a Taiwan-specific signature and delegate are known.
         _modelRendererUnkFuncHook = hooks.CreateHook<ModelRendererUnkFuncDelegate>("ModelRenderer.UnkFunc",
             Sigs.ModelRendererUnkFunc, ModelRendererUnkFuncDetour,
-            !HookOverrides.Instance.PostProcessing.ModelRendererUnkFunc).Result;
+            false).Result;
         _prepareColorTableHook = hooks.CreateHook<MaterialResourceHandle.Delegates.PrepareColorTable>(
             "MaterialResourceHandle.PrepareColorTable",
             Sigs.PrepareColorSet, PrepareColorTableDetour,
