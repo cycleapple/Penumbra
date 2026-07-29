@@ -5,23 +5,16 @@ using OtterGui.Filesystem;
 using Penumbra.Import.Structs;
 using Penumbra.Mods;
 using Penumbra.Services;
+using Penumbra.Util;
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.SevenZip;
-using SharpCompress.Common;
-using SharpCompress.Readers;
 using ZipArchive = SharpCompress.Archives.Zip.ZipArchive;
 
 namespace Penumbra.Import;
 
 public partial class TexToolsImporter
 {
-    private static readonly ExtractionOptions _extractionOptions = new()
-    {
-        ExtractFullPath = true,
-        Overwrite       = true,
-    };
-
     /// <summary>
     /// Extract regular compressed archives that are folders containing penumbra-formatted mods.
     /// The mod has to either contain a meta.json at top level, or one folder deep.
@@ -56,16 +49,14 @@ public partial class TexToolsImporter
 
         State           = ImporterState.ExtractingModFiles;
         _currentFileIdx = 0;
-        var reader = archive.ExtractAllEntries();
-
-        while (reader.MoveToNextEntry())
+        ArchiveUtility.ForEachEntry(archive, reader =>
         {
             _token.ThrowIfCancellationRequested();
 
             if (reader.Entry.IsDirectory)
             {
                 --_currentNumFiles;
-                continue;
+                return;
             }
 
             Penumbra.Log.Information($"        -> Extracting {reader.Entry.Key}");
@@ -93,7 +84,7 @@ public partial class TexToolsImporter
             }
 
             ++_currentFileIdx;
-        }
+        });
 
         _token.ThrowIfCancellationRequested();
         var oldName = _currentModDirectory.FullName;
@@ -137,21 +128,21 @@ public partial class TexToolsImporter
     }
 
 
-    private void HandleFileMigrationsAndWrite(IReader reader)
+    private void HandleFileMigrationsAndWrite(ArchiveUtility.ReaderShim reader)
     {
         switch (Path.GetExtension(reader.Entry.Key))
         {
             case ".mdl":
-                _migrationManager.MigrateMdlDuringExtraction(reader, _currentModDirectory!.FullName, _extractionOptions);
+                _migrationManager.MigrateMdlDuringExtraction(reader, _currentModDirectory!.FullName);
                 break;
             case ".mtrl":
-                _migrationManager.MigrateMtrlDuringExtraction(reader, _currentModDirectory!.FullName, _extractionOptions);
+                _migrationManager.MigrateMtrlDuringExtraction(reader, _currentModDirectory!.FullName);
                 break;
             case ".tex":
-                _migrationManager.FixMipMaps(reader, _currentModDirectory!.FullName, _extractionOptions);
+                _migrationManager.FixMipMaps(reader, _currentModDirectory!.FullName);
                 break;
             default:
-                reader.WriteEntryToDirectory(_currentModDirectory!.FullName, _extractionOptions);
+                reader.WriteEntryToDirectory(_currentModDirectory!.FullName);
                 break;
         }
     }
