@@ -118,6 +118,13 @@ public unsafe class ResourceService : IDisposable, IRequiredService
                     unk9);
         }
 
+        if (gamePath.IsEmpty)
+        {
+            Penumbra.Log.Error(
+                $"[ResourceService] Empty resource path requested with category {*categoryId}, type {*resourceType}, hash {*resourceHash}.");
+            return null;
+        }
+
         var original = gamePath;
         ResourceHandle* returnValue = null;
         ResourceRequested?.Invoke(ref *categoryId, ref *resourceType, ref *resourceHash, ref gamePath, original, pGetResParams, ref isSync,
