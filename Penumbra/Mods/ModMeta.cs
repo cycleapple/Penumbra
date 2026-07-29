@@ -1,5 +1,7 @@
+using Dalamud.Interface.ImGuiNotification;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OtterGui.Classes;
 using Penumbra.GameData.Structs;
 using Penumbra.Mods.Manager;
 using Penumbra.Services;
@@ -15,6 +17,14 @@ public readonly struct ModMeta(Mod mod) : ISavable
 
     public void Save(StreamWriter writer)
     {
+        if (mod.FileVersion is 4)
+        {
+            Penumbra.Messager.NotificationMessage(
+                $"無法儲存由新版 Penumbra 建立的 V4 模組「{mod.Identifier}」。此模組在台服 API13 版本中以唯讀模式載入。",
+                NotificationType.Warning);
+            throw new InvalidOperationException($"Can not save V4 mod metadata for {mod.Identifier}.");
+        }
+
         var jObject = new JObject
         {
             { nameof(FileVersion), JToken.FromObject(FileVersion) },
@@ -60,6 +70,7 @@ public readonly struct ModMeta(Mod mod) : ISavable
             var json = JObject.Parse(text);
 
             var newFileVersion = json[nameof(FileVersion)]?.Value<uint>() ?? 0;
+            mod.FileVersion = newFileVersion;
 
             // Empty name gets checked after loading and is not allowed.
             var newName = json[nameof(Mod.Name)]?.Value<string>() ?? string.Empty;
@@ -118,12 +129,14 @@ public readonly struct ModMeta(Mod mod) : ISavable
                 mod.DefaultPreferredItems =  defaultItems;
             }
 
-            if (newFileVersion != FileVersion)
+            if (newFileVersion < FileVersion)
                 if (ModMigration.Migrate(creator, editor.SaveService, mod, json, ref newFileVersion))
                 {
                     changes |= ModDataChangeType.Migration;
                     editor.SaveService.ImmediateSave(new ModMeta(mod));
                 }
+            if (newFileVersion > 4)
+                throw new NotSupportedException($"Unsupported mod metadata version {newFileVersion}.");
 
             // Required features get checked during parsing, in which case the new required features signal invalid.
             if (requiredFeatures != mod.RequiredFeatures)

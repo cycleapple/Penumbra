@@ -30,6 +30,12 @@ public sealed class Mod : IMod
         Priority = ModPriority.MaxValue,
     };
 
+    /// <summary>
+    /// The on-disk metadata version this mod was loaded from.
+    /// V4 mods are supported read-only by the Taiwan API13 compatibility branch.
+    /// </summary>
+    public uint FileVersion { get; internal set; }
+
     // Main Data
     public DirectoryInfo ModPath { get; internal set; }
 

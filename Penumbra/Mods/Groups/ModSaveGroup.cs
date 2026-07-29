@@ -1,5 +1,7 @@
+using Dalamud.Interface.ImGuiNotification;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OtterGui.Classes;
 using Penumbra.GameData.Files.ShaderStructs;
 using Penumbra.Mods.Settings;
 using Penumbra.Mods.SubMods;
@@ -72,6 +74,15 @@ public readonly struct ModSaveGroup : ISavable
 
     public void Save(StreamWriter writer)
     {
+        var owner = _group?.Mod ?? _defaultMod?.Mod as Mod;
+        if (owner?.FileVersion is 4)
+        {
+            Penumbra.Messager.NotificationMessage(
+                $"無法修改由新版 Penumbra 建立的 V4 模組「{owner.Identifier}」。此模組在台服 API13 版本中以唯讀模式載入。",
+                NotificationType.Warning);
+            throw new InvalidOperationException($"Can not save V4 mod option data for {owner.Identifier}.");
+        }
+
         using var j = new JsonTextWriter(writer);
         j.Formatting = Formatting.Indented;
         var serializer = new JsonSerializer { Formatting = Formatting.Indented };
