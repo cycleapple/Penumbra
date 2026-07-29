@@ -123,7 +123,7 @@ public partial class TexToolsImporter : IDisposable
             return HandleRegularArchive(modPackFile);
 
         using var zfs              = modPackFile.OpenRead();
-        using var extractedModPack = ZipArchive.Open(zfs);
+        using var extractedModPack = (ZipArchive)ZipArchive.OpenArchive(zfs);
 
         var mpl = FindZipEntry(extractedModPack, "TTMPL.mpl");
         if (mpl == null)

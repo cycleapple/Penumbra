@@ -29,13 +29,9 @@
       },
       "SharpCompress": {
         "type": "Direct",
-        "requested": "[0.40.0, )",
-        "resolved": "0.40.0",
-        "contentHash": "yP/aFX1jqGikVF7u2f05VEaWN4aCaKNLxSas82UgA2GGVECxq/BcqZx3STHCJ78qilo1azEOk1XpBglIuGMb7w==",
-        "dependencies": {
-          "System.Buffers": "4.6.0",
-          "ZstdSharp.Port": "0.8.5"
-        }
+        "requested": "[0.48.0, )",
+        "resolved": "0.48.0",
+        "contentHash": "6k0Sa9gf85Sz9Npy7jnn5UPerejrAa3FxU9Gq5T6PwFWHUhUIdF903TjPiJtrYjXFJsXbnccaWSNMHzEg27DwQ=="
       },
       "SharpGLTF.Core": {
         "type": "Direct",
@@ -102,11 +98,6 @@
           "SharpGLTF.Core": "1.0.5"
         }
       },
-      "System.Buffers": {
-        "type": "Transitive",
-        "resolved": "4.6.0",
-        "contentHash": "lN6tZi7Q46zFzAbRYXTIvfXcyvQQgxnY7Xm6C6xQ9784dEL1amjM6S6Iw4ZpsvesAKnRVsM4scrDQaDqSClkjA=="
-      },
       "System.Memory": {
         "type": "Transitive",
         "resolved": "4.5.5",
@@ -130,11 +121,6 @@
           "System.ValueTuple": "4.5.0"
         }
       },
-      "ZstdSharp.Port": {
-        "type": "Transitive",
-        "resolved": "0.8.5",
-        "contentHash": "TR4j17WeVSEb3ncgL2NqlXEqcy04I+Kk9CaebNDplUeL8XOgjkZ7fP4Wg4grBdPLIqsV86p2QaXTkZoRMVOsew=="
-      },
       "ottergui": {
         "type": "Project",
         "dependencies": {
@@ -154,7 +140,7 @@
           "FlatSharp.Compiler": "[7.9.0, )",
           "FlatSharp.Runtime": "[7.9.0, )",
           "OtterGui": "[1.0.0, )",
-          "Penumbra.Api": "[5.10.0, )",
+          "Penumbra.Api": "[5.12.0, )",
           "Penumbra.String": "[1.0.6, )"
         }
       },

@@ -32,7 +32,7 @@ public partial class TexToolsImporter
     private DirectoryInfo HandleRegularArchive(FileInfo modPackFile)
     {
         using var zfs     = modPackFile.OpenRead();
-        using var archive = ArchiveFactory.Open(zfs);
+        using var archive = ArchiveFactory.OpenArchive(zfs);
 
         var baseName = FindArchiveModMeta(archive, out var leadDir);
         var name     = string.Empty;
