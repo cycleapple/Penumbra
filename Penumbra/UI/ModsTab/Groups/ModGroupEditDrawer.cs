@@ -200,7 +200,7 @@ public sealed class ModGroupEditDrawer(
             }
             catch (Exception e)
             {
-                Penumbra.Messager.NotificationMessage(e, "Could not open editor.", NotificationType.Error);
+                Penumbra.Messager.NotificationMessage(e, "無法開啟編輯器。", NotificationType.Error);
             }
 
         if (fileExists)

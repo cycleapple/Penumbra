@@ -38,7 +38,7 @@ public sealed class ShpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
     protected override void DrawNew()
     {
         ImGui.TableNextColumn();
-        CopyToClipboardButton("Copy all current SHP manipulations to clipboard."u8,
+        CopyToClipboardButton("將目前所有 SHP 操作複製到剪貼簿。"u8,
             new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Shp)));
 
         ImGui.TableNextColumn();
@@ -346,21 +346,21 @@ public sealed class ShpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
     public static ReadOnlySpan<byte> SlotName(HumanSlot slot)
         => slot switch
         {
-            HumanSlot.Unknown => "All Slots"u8,
-            HumanSlot.Head    => "Equipment: Head"u8,
-            HumanSlot.Body    => "Equipment: Body"u8,
-            HumanSlot.Hands   => "Equipment: Hands"u8,
-            HumanSlot.Legs    => "Equipment: Legs"u8,
-            HumanSlot.Feet    => "Equipment: Feet"u8,
-            HumanSlot.Ears    => "Equipment: Ears"u8,
-            HumanSlot.Neck    => "Equipment: Neck"u8,
-            HumanSlot.Wrists  => "Equipment: Wrists"u8,
-            HumanSlot.RFinger => "Equipment: Right Finger"u8,
-            HumanSlot.LFinger => "Equipment: Left Finger"u8,
-            HumanSlot.Glasses => "Equipment: Glasses"u8,
-            HumanSlot.Hair    => "Customization: Hair"u8,
-            HumanSlot.Face    => "Customization: Face"u8,
-            HumanSlot.Ear     => "Customization: Ears"u8,
-            _                 => "Unknown"u8,
+            HumanSlot.Unknown => "全部部位"u8,
+            HumanSlot.Head    => "裝備：頭部"u8,
+            HumanSlot.Body    => "裝備：身體"u8,
+            HumanSlot.Hands   => "裝備：手部"u8,
+            HumanSlot.Legs    => "裝備：腿部"u8,
+            HumanSlot.Feet    => "裝備：腳部"u8,
+            HumanSlot.Ears    => "裝備：耳朵"u8,
+            HumanSlot.Neck    => "裝備：頸部"u8,
+            HumanSlot.Wrists  => "裝備：手腕"u8,
+            HumanSlot.RFinger => "裝備：右手指"u8,
+            HumanSlot.LFinger => "裝備：左手指"u8,
+            HumanSlot.Glasses => "裝備：眼鏡"u8,
+            HumanSlot.Hair    => "外貌：頭髮"u8,
+            HumanSlot.Face    => "外貌：面部"u8,
+            HumanSlot.Ear     => "外貌：耳朵"u8,
+            _                 => "未知"u8,
         };
 }

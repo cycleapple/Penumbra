@@ -96,12 +96,12 @@ public class IndividualAssignmentUi : IDisposable
     private ActorIdentifier[] _npcIdentifiers      = [];
     private ActorIdentifier[] _ownedIdentifiers    = [];
 
-    private const string NewPlayerTooltipEmpty     = "Please enter a valid player name and choose an available world or 'Any World'.";
-    private const string NewRetainerTooltipEmpty   = "Please enter a valid retainer name.";
-    private const string NewPlayerTooltipInvalid   = "The entered name is not a valid name for a player character.";
-    private const string NewRetainerTooltipInvalid = "The entered name is not a valid name for a retainer.";
+    private const string NewPlayerTooltipEmpty     = "請輸入有效的玩家名稱並選擇可用的伺服器或任意伺服器。";
+    private const string NewRetainerTooltipEmpty   = "請輸入有效的雇員名稱。";
+    private const string NewPlayerTooltipInvalid   = "輸入的名稱不是有效的玩家名稱。";
+    private const string NewRetainerTooltipInvalid = "輸入的名稱不是有效的雇員名稱。";
     private const string AlreadyAssigned           = "The Individual you specified has already been assigned a collection.";
-    private const string NewNpcTooltipEmpty        = "Please select a valid NPC from the drop down menu first.";
+    private const string NewNpcTooltipEmpty        = "請先從下拉式選單選擇有效的 NPC。";
 
     private static readonly IReadOnlyList<ObjectKind> ObjectKinds = new[]
     {

@@ -24,7 +24,7 @@ public class ModPanelCollectionsTab(CollectionManager manager, ModFileSystemSele
     private readonly List<(ModCollection, ModCollection, uint, ModState)> _cache = [];
 
     public ReadOnlySpan<byte> Label
-        => "Collections"u8;
+        => "收藏集"u8;
 
     public void DrawContent()
     {
@@ -102,10 +102,10 @@ public class ModPanelCollectionsTab(CollectionManager manager, ModFileSystemSele
     private static ReadOnlySpan<byte> ToText(ModState state)
         => state switch
         {
-            ModState.Unconfigured => "Unconfigured"u8,
-            ModState.Enabled      => "Enabled"u8,
-            ModState.Disabled     => "Disabled"u8,
-            _                     => "Unknown"u8,
+            ModState.Unconfigured => "未設定"u8,
+            ModState.Enabled      => "已啟用"u8,
+            ModState.Disabled     => "已停用"u8,
+            _                     => "未知"u8,
         };
 
     private (int Direct, int Inherited) CountUsage(Mod mod)

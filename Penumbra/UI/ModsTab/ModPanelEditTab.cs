@@ -37,7 +37,7 @@ public class ModPanelEditTab(
     private Mod                _mod  = null!;
 
     public ReadOnlySpan<byte> Label
-        => "Edit Mod"u8;
+        => "模組編輯"u8;
 
     public void DrawContent()
     {
@@ -270,15 +270,15 @@ public class ModPanelEditTab(
 
             var (disabled, tt) = _state switch
             {
-                NewDirectoryState.Identical      => (true, "Current directory name is identical to new one."),
-                NewDirectoryState.Empty          => (true, "Please enter a new directory name first."),
-                NewDirectoryState.NonExisting    => (false, $"Move mod from {mod.ModPath.Name} to {_currentModDirectory}."),
-                NewDirectoryState.ExistsEmpty    => (false, $"Move mod from {mod.ModPath.Name} to {_currentModDirectory}."),
-                NewDirectoryState.ExistsNonEmpty => (true, $"{_currentModDirectory} already exists and is not empty."),
-                NewDirectoryState.ExistsAsFile   => (true, $"{_currentModDirectory} exists as a file."),
+                NewDirectoryState.Identical      => (true, "目前資料夾名稱與新名稱相同。"),
+                NewDirectoryState.Empty          => (true, "請先輸入新的資料夾名稱。"),
+                NewDirectoryState.NonExisting    => (false, $"將模組從 {mod.ModPath.Name} 移動到 {_currentModDirectory}。"),
+                NewDirectoryState.ExistsEmpty    => (false, $"將模組從 {mod.ModPath.Name} 移動到 {_currentModDirectory}。"),
+                NewDirectoryState.ExistsNonEmpty => (true, $"{_currentModDirectory} 已存在且不是空資料夾。"),
+                NewDirectoryState.ExistsAsFile   => (true, $"{_currentModDirectory} 已經以檔案形式存在。"),
                 NewDirectoryState.ContainsInvalidSymbols => (true,
                     $"{_currentModDirectory} contains invalid symbols for FFXIV."),
-                _ => (true, "Unknown error."),
+                _ => (true, "未知錯誤。"),
             };
             ImGui.SameLine();
             if (ImGuiUtil.DrawDisabledButton("Rename Mod Directory", buttonSize, tt, disabled) && _currentModDirectory != null)

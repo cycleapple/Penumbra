@@ -23,7 +23,7 @@ public class ModPanelConflictsTab(CollectionManager collectionManager, ModFileSy
     private int? _currentPriority;
 
     public ReadOnlySpan<byte> Label
-        => "Conflicts"u8;
+        => "模組衝突"u8;
 
     public bool IsVisible
         => collectionManager.Active.Current.Conflicts(selector.Selected!).Any(c => !GetPriority(c).IsHidden);

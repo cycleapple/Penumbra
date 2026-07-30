@@ -30,7 +30,7 @@ public class ModPanelSettingsTab(
     private int? _currentPriority;
 
     public ReadOnlySpan<byte> Label
-        => "Settings"u8;
+        => "模組設定"u8;
 
     public void DrawHeader()
         => tutorial.OpenTutorial(BasicTutorialSteps.ModOptions);

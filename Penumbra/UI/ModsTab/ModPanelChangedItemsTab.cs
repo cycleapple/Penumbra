@@ -206,7 +206,7 @@ public class ModPanelChangedItemsTab(
     }
 
     public ReadOnlySpan<byte> Label
-        => "Changed Items"u8;
+        => "變更項目"u8;
 
     public bool IsVisible
         => selector.Selected!.ChangedItems.Count > 0;

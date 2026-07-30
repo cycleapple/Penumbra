@@ -39,7 +39,7 @@ public sealed class ImcMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
         CopyToClipboardButton("Copy all current IMC manipulations to clipboard."u8, new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Imc)));
         ImGui.TableNextColumn();
         var canAdd = _fileExists && !Editor.Contains(Identifier);
-        var tt     = canAdd ? "Stage this edit."u8 : !_fileExists ? "This IMC file does not exist."u8 : "This entry is already edited."u8;
+        var tt     = canAdd ? "暫存此編輯。"u8 : !_fileExists ? "此IMC檔案不存在。"u8 : "此項已被編輯。"u8;
         if (ImUtf8.IconButton(FontAwesomeIcon.Plus, tt, disabled: !canAdd))
             Editor.Changes |= Editor.TryAdd(Identifier, Entry);
 

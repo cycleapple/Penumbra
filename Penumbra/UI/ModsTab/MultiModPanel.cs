@@ -32,9 +32,9 @@ public class MultiModPanel(ModFileSystemSelector selector, ModDataEditor editor,
         var text = (numLeaves, numFolders) switch
         {
             (0, 0)   => string.Empty, // should not happen
-            (> 0, 0) => $"{numLeaves} Mods",
-            (0, > 0) => $"{numFolders} Folders",
-            _        => $"{numLeaves} Mods, {numFolders} Folders",
+            (> 0, 0) => $"{numLeaves} 個模組",
+            (0, > 0) => $"{numFolders} 個資料夾",
+            _        => $"{numLeaves} 個模組，{numFolders} 個資料夾",
         };
         ImGui.SetCursorPos(treeNodePos);
         ImUtf8.TextRightAligned(text);
@@ -127,7 +127,7 @@ public class MultiModPanel(ModFileSystemSelector selector, ModDataEditor editor,
             ? _tag.Length == 0
                 ? "No tag specified."
                 : $"No selected mod contains the tag \"{_tag}\" locally."
-            : $"Remove the local tag \"{_tag}\" from {_removeMods.Count} mods:\n\n\t{string.Join("\n\t", _removeMods.Select(m => m.Item1.Name.Text))}";
+            : $"從 {_removeMods.Count} 個模組中移除本地標籤 \"{_tag}\"：\n\n\t{string.Join("\n\t", _removeMods.Select(m => m.Item1.Name.Text))}";
         ImUtf8.SameLineInner();
         if (ImUtf8.ButtonEx(label, tooltip, width, _removeMods.Count == 0))
             foreach (var (mod, index) in _removeMods)

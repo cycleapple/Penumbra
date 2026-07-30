@@ -35,11 +35,11 @@ public sealed class EqpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
     protected override void DrawNew()
     {
         ImGui.TableNextColumn();
-        CopyToClipboardButton("Copy all current EQP manipulations to clipboard."u8, new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Eqp)));
+        CopyToClipboardButton("將目前所有 EQP 操作複製到剪貼簿。"u8, new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Eqp)));
 
         ImGui.TableNextColumn();
         var canAdd = !Editor.Contains(Identifier);
-        var tt     = canAdd ? "Stage this edit."u8 : "This entry is already edited."u8;
+        var tt     = canAdd ? "編輯此項。"u8 : "此項已被編輯。"u8;
         if (ImUtf8.IconButton(FontAwesomeIcon.Plus, tt, disabled: !canAdd))
             Editor.Changes |= Editor.TryAdd(Identifier, Entry);
 

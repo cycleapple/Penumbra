@@ -4,7 +4,7 @@
     "Punchline": "Runtime mod loader and manager.",
     "Description": "Runtime mod loader and manager.",
     "InternalName": "Penumbra",
-    "AssemblyVersion": "1.5.1.23",
+    "AssemblyVersion": "1.5.1.24",
     "RepoUrl": "https://github.com/cycleapple/Penumbra/tree/api13-tw-1.5.1",
     "ApplicableVersion": "any",
     "Tags": [ "modding" ],

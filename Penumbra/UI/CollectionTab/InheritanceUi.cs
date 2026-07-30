@@ -221,11 +221,11 @@ public class InheritanceUi(CollectionManager collectionManager, IncognitoService
         var inheritance = InheritanceManager.CheckValidInheritance(_active.Current, _newInheritance);
         var tt = inheritance switch
         {
-            InheritanceManager.ValidInheritance.Empty     => "No valid collection to inherit from selected.",
+            InheritanceManager.ValidInheritance.Empty     => "未選擇可供繼承的有效收藏集。",
             InheritanceManager.ValidInheritance.Valid     => $"Let the {TutorialService.SelectedCollection} inherit from this collection.",
-            InheritanceManager.ValidInheritance.Self      => "The collection can not inherit from itself.",
-            InheritanceManager.ValidInheritance.Contained => "Already inheriting from this collection.",
-            InheritanceManager.ValidInheritance.Circle    => "Inheriting from this collection would lead to cyclic inheritance.",
+            InheritanceManager.ValidInheritance.Self      => "收藏集不能繼承自己。",
+            InheritanceManager.ValidInheritance.Contained => "已經繼承此收藏集。",
+            InheritanceManager.ValidInheritance.Circle    => "繼承此收藏集會造成循環繼承。",
             _                                             => string.Empty,
         };
         if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Plus.ToIconString(), UiHelpers.IconButtonSize, tt,

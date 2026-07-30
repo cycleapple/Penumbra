@@ -431,7 +431,7 @@ public sealed class CollectionPanel(
         else
         {
             if (tooltip.Length == 0 && identifiers.Length > 0)
-                tooltip = $"The current target {identifiers[0].PlayerName} is not valid for an assignment.";
+                tooltip = $"目前目標 {identifiers[0].PlayerName} 無效，無法指派。";
             DrawButton($"{intro} (Unavailable)", CollectionType.Individual, width, 0, ActorIdentifier.Invalid, suffix);
         }
 
@@ -439,26 +439,26 @@ public sealed class CollectionPanel(
     }
 
     private void DrawCurrentCharacter(Vector2 width)
-        => DrawIndividualButton("Current Character", width, string.Empty, 'c', actors.GetCurrentPlayer());
+        => DrawIndividualButton("目前角色", width, string.Empty, 'c', actors.GetCurrentPlayer());
 
     private void DrawCurrentTarget(Vector2 width)
-        => DrawIndividualButton("Current Target", width, string.Empty, 't',
+        => DrawIndividualButton("目前目標", width, string.Empty, 't',
             actors.FromObject(targets.Target, false, true, true));
 
     private void DrawNewPlayer(Vector2 width)
-        => DrawIndividualButton("New Player", width, _individualAssignmentUi.PlayerTooltip, 'p',
+        => DrawIndividualButton("新增玩家指派", width, _individualAssignmentUi.PlayerTooltip, 'p',
             _individualAssignmentUi.PlayerIdentifiers.FirstOrDefault());
 
     private void DrawNewRetainer(Vector2 width)
-        => DrawIndividualButton("New Bell Retainer", width, _individualAssignmentUi.RetainerTooltip, 'r',
+        => DrawIndividualButton("新增傳喚鈴雇員指派", width, _individualAssignmentUi.RetainerTooltip, 'r',
             _individualAssignmentUi.RetainerIdentifiers.FirstOrDefault());
 
     private void DrawNewNpc(Vector2 width)
-        => DrawIndividualButton("New NPC", width, _individualAssignmentUi.NpcTooltip, 'n',
+        => DrawIndividualButton("新增 NPC 指派", width, _individualAssignmentUi.NpcTooltip, 'n',
             _individualAssignmentUi.NpcIdentifiers.FirstOrDefault());
 
     private void DrawNewOwned(Vector2 width)
-        => DrawIndividualButton("New Owned NPC", width, _individualAssignmentUi.OwnedTooltip, 'o',
+        => DrawIndividualButton("新增玩家所屬 NPC 指派", width, _individualAssignmentUi.OwnedTooltip, 'o',
             _individualAssignmentUi.OwnedIdentifiers.FirstOrDefault());
 
     private void DrawIndividualCollections(Vector2 width)

@@ -407,9 +407,9 @@ public class ResourceTreeViewer(
     private static ReadOnlySpan<byte> GetPathStatusLabel(ResourceNode.PathStatus status)
         => status switch
         {
-            ResourceNode.PathStatus.External    => "(managed by external tools)"u8,
-            ResourceNode.PathStatus.NonExistent => "(not found)"u8,
-            _                                   => "(unavailable)"u8,
+            ResourceNode.PathStatus.External    => "(由外部工具管理)"u8,
+            ResourceNode.PathStatus.NonExistent => "(未找到)"u8,
+            _                                   => "(不可用)"u8,
         };
 
     private static string GetPathStatusDescription(ResourceNode.PathStatus status)

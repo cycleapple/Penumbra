@@ -82,13 +82,13 @@ public sealed class AtchMetaDrawer : MetaDrawer<AtchIdentifier, AtchEntry>, ISer
         }
         catch (RaceCodeException ex)
         {
-            Penumbra.Messager.AddMessage(new Notification(ex, "The imported .atch file does not contain a race code (cXXXX) in its name.",
+            Penumbra.Messager.AddMessage(new Notification(ex, "匯入的.atch檔案不包含種族代碼（cXXXX）。",
                 "Could not import .atch file:",
                 NotificationType.Warning));
         }
         catch (Exception ex)
         {
-            Penumbra.Messager.AddMessage(new Notification(ex, "Unable to import .atch file.", "Could not import .atch file:",
+            Penumbra.Messager.AddMessage(new Notification(ex, "無法匯入.atch檔案。", "無法匯入.atch檔案：",
                 NotificationType.Warning));
         }
     }
@@ -97,12 +97,12 @@ public sealed class AtchMetaDrawer : MetaDrawer<AtchIdentifier, AtchEntry>, ISer
     protected override void DrawNew()
     {
         ImGui.TableNextColumn();
-        CopyToClipboardButton("Copy all current ATCH manipulations to clipboard."u8,
+        CopyToClipboardButton("將目前所有 ATCH 操作複製到剪貼簿。"u8,
             new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Atch)));
 
         ImGui.TableNextColumn();
         var canAdd = !Editor.Contains(Identifier);
-        var tt     = canAdd ? "Stage this edit."u8 : "This entry is already edited."u8;
+        var tt     = canAdd ? "暫存此編輯。"u8 : "此項已被編輯。"u8;
         if (ImUtf8.IconButton(FontAwesomeIcon.Plus, tt, disabled: !canAdd))
             Editor.Changes |= Editor.TryAdd(Identifier, Entry);
 

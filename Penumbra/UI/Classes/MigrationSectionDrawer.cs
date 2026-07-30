@@ -55,7 +55,7 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
     }
 
     private static ReadOnlySpan<byte> MigrationTooltip
-        => "Cancel the migration. This does not revert already finished migrations."u8;
+        => "取消遷移。這不會恢復已經完成的遷移。"u8;
 
     private void DrawMdlMigration()
     {
@@ -63,9 +63,9 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
             migrationManager.MigrateMdlDirectory(config.ModDirectory, _createBackups);
 
         ImUtf8.SameLineInner();
-        DrawCancelButton(MigrationManager.TaskType.MdlMigration, "Cancel the migration. This does not revert already finished migrations."u8);
+        DrawCancelButton(MigrationManager.TaskType.MdlMigration, "取消遷移。這不會恢復已經完成的遷移。"u8);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MdlMigration, IsRunning: true });
-        DrawData(migrationManager.MdlMigration, "No model files found."u8, "migrated"u8);
+        DrawData(migrationManager.MdlMigration, "未找到模型檔案。"u8, "已遷移"u8);
     }
 
     private void DrawMtrlMigration()
@@ -76,12 +76,12 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
         ImUtf8.SameLineInner();
         DrawCancelButton(MigrationManager.TaskType.MtrlMigration, MigrationTooltip);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MtrlMigration, IsRunning: true });
-        DrawData(migrationManager.MtrlMigration, "No material files found."u8, "migrated"u8);
+        DrawData(migrationManager.MtrlMigration, "未找到材質檔案。"u8, "已遷移"u8);
     }
 
 
     private static ReadOnlySpan<byte> CleanupTooltip
-        => "Cancel the cleanup. This is not revertible."u8;
+        => "取消清理。注意無法恢復。"u8;
 
     private void DrawMdlCleanup()
     {
@@ -91,7 +91,7 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
         ImUtf8.SameLineInner();
         DrawCancelButton(MigrationManager.TaskType.MdlCleanup, CleanupTooltip);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MdlCleanup, IsRunning: true });
-        DrawData(migrationManager.MdlCleanup, "No model backup files found."u8, "deleted"u8);
+        DrawData(migrationManager.MdlCleanup, "未找到模型備份檔案。"u8, "已刪除"u8);
     }
 
     private void DrawMtrlCleanup()
@@ -102,11 +102,11 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
         ImUtf8.SameLineInner();
         DrawCancelButton(MigrationManager.TaskType.MtrlCleanup, CleanupTooltip);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MtrlCleanup, IsRunning: true });
-        DrawData(migrationManager.MtrlCleanup, "No material backup files found."u8, "deleted"u8);
+        DrawData(migrationManager.MtrlCleanup, "未找到材質備份檔案。"u8, "已刪除"u8);
     }
 
     private static ReadOnlySpan<byte> RestorationTooltip
-        => "Cancel the restoration. This does not revert already finished restoration."u8;
+        => "取消恢復。這不會恢復已經完成的恢復。"u8;
 
     private void DrawMdlRestore()
     {
@@ -116,7 +116,7 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
         ImUtf8.SameLineInner();
         DrawCancelButton(MigrationManager.TaskType.MdlRestoration, RestorationTooltip);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MdlRestoration, IsRunning: true });
-        DrawData(migrationManager.MdlRestoration, "No model backup files found."u8, "restored"u8);
+        DrawData(migrationManager.MdlRestoration, "未找到模型備份檔案。"u8, "已恢復"u8);
     }
 
     private void DrawMtrlRestore()
@@ -127,7 +127,7 @@ public class MigrationSectionDrawer(MigrationManager migrationManager, Configura
         ImUtf8.SameLineInner();
         DrawCancelButton(MigrationManager.TaskType.MtrlRestoration, RestorationTooltip);
         DrawSpinner(migrationManager is { CurrentTask: MigrationManager.TaskType.MtrlRestoration, IsRunning: true });
-        DrawData(migrationManager.MtrlRestoration, "No material backup files found."u8, "restored"u8);
+        DrawData(migrationManager.MtrlRestoration, "未找到材質備份檔案。"u8, "已恢復"u8);
     }
 
     private static void DrawSpinner(bool enabled)

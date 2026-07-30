@@ -159,25 +159,25 @@ public partial class ModEditWindow : Window, IDisposable, IUiService
         });
         sb.Append(Mod!.Name);
         if (subMods > 1)
-            sb.Append($"   |   {subMods} Options");
+            sb.Append($"   |   {subMods} 選項");
 
         if (size > 0)
             sb.Append($"   |   {_editor.Files.Available.Count} Files ({Functions.HumanReadableSize(size)})");
 
         if (unused > 0)
-            sb.Append($"   |   {unused} Unused Files");
+            sb.Append($"   |   {unused} 個未使用的檔案");
 
         if (_editor.Files.Missing.Count > 0)
-            sb.Append($"   |   {_editor.Files.Missing.Count} Missing Files");
+            sb.Append($"   |   {_editor.Files.Missing.Count} 個遺失的檔案");
 
         if (redirections > 0)
-            sb.Append($"   |   {redirections} Redirections");
+            sb.Append($"   |   {redirections} 個重新導向");
 
         if (manipulations > 0)
-            sb.Append($"   |   {manipulations} Manipulations");
+            sb.Append($"   |   {manipulations} 個中繼資料操作");
 
         if (swaps > 0)
-            sb.Append($"   |   {swaps} Swaps");
+            sb.Append($"   |   {swaps} 替換");
 
         _allowReduplicate = redirections != _editor.Files.Available.Count || _editor.Files.Missing.Count > 0 || unused > 0;
         sb.Append(WindowBaseLabel);

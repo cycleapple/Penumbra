@@ -37,7 +37,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
 
         ImGui.TableNextColumn();
         var canAdd = !Editor.Contains(Identifier);
-        var tt     = canAdd ? "Stage this edit."u8 : "This entry is already edited."u8;
+        var tt     = canAdd ? "編輯此項。"u8 : "此項已被編輯。"u8;
         if (ImUtf8.IconButton(FontAwesomeIcon.Plus, tt, disabled: !canAdd))
             Editor.Changes |= Editor.TryAdd(Identifier, Entry);
 
@@ -83,14 +83,14 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
         using var dis = ImRaii.Disabled(disabled);
         ImGui.TableNextColumn();
         var changes = false;
-        if (Checkmark("##gmpEnabled"u8, "Gimmick Enabled", entry.Enabled, defaultEntry.Enabled, out var enabled))
+        if (Checkmark("##gmpEnabled"u8, "啟用裝置", entry.Enabled, defaultEntry.Enabled, out var enabled))
         {
             entry   = entry with { Enabled = enabled };
             changes = true;
         }
 
         ImGui.TableNextColumn();
-        if (Checkmark("##gmpAnimated"u8, "Gimmick Animated", entry.Animated, defaultEntry.Animated, out var animated))
+        if (Checkmark("##gmpAnimated"u8, "裝置動畫", entry.Animated, defaultEntry.Animated, out var animated))
         {
             entry   = entry with { Animated = animated };
             changes = true;
@@ -98,7 +98,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
 
         var rotationWidth = 75 * ImUtf8.GlobalScale;
         ImGui.TableNextColumn();
-        if (DragInput("##gmpRotationA"u8, "Rotation A in Degrees"u8, rotationWidth, entry.RotationA, defaultEntry.RotationA, out var rotationA,
+        if (DragInput("##gmpRotationA"u8, "A方向旋轉角度值"u8, rotationWidth, entry.RotationA, defaultEntry.RotationA, out var rotationA,
                 (ushort)0,                (ushort)360,               0.05f,         !disabled))
         {
             entry   = entry with { RotationA = rotationA };
@@ -106,7 +106,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
         }
 
         ImUtf8.SameLineInner();
-        if (DragInput("##gmpRotationB"u8, "Rotation B in Degrees"u8, rotationWidth, entry.RotationB, defaultEntry.RotationB, out var rotationB,
+        if (DragInput("##gmpRotationB"u8, "B方向旋轉角度值"u8, rotationWidth, entry.RotationB, defaultEntry.RotationB, out var rotationB,
                 (ushort)0,                (ushort)360,               0.05f,         !disabled))
         {
             entry   = entry with { RotationB = rotationB };
@@ -114,7 +114,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
         }
 
         ImUtf8.SameLineInner();
-        if (DragInput("##gmpRotationC"u8, "Rotation C in Degrees"u8, rotationWidth, entry.RotationC, defaultEntry.RotationC, out var rotationC,
+        if (DragInput("##gmpRotationC"u8, "C方向旋轉角度值"u8, rotationWidth, entry.RotationC, defaultEntry.RotationC, out var rotationC,
                 (ushort)0,                (ushort)360,               0.05f,         !disabled))
         {
             entry   = entry with { RotationC = rotationC };
@@ -123,7 +123,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
 
         var unkWidth = 50 * ImUtf8.GlobalScale;
         ImGui.TableNextColumn();
-        if (DragInput("##gmpUnkA"u8, "Animation Type A?"u8, unkWidth, entry.UnknownA, defaultEntry.UnknownA, out var unknownA,
+        if (DragInput("##gmpUnkA"u8, "動畫類型A?"u8, unkWidth, entry.UnknownA, defaultEntry.UnknownA, out var unknownA,
                 (byte)0,             (byte)15,              0.01f,    !disabled))
         {
             entry   = entry with { UnknownA = unknownA };
@@ -131,7 +131,7 @@ public sealed class GmpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
         }
 
         ImUtf8.SameLineInner();
-        if (DragInput("##gmpUnkB"u8, "Animation Type B?"u8, unkWidth, entry.UnknownB, defaultEntry.UnknownB, out var unknownB,
+        if (DragInput("##gmpUnkB"u8, "動畫類型B?"u8, unkWidth, entry.UnknownB, defaultEntry.UnknownB, out var unknownB,
                 (byte)0,             (byte)15,              0.01f,    !disabled))
         {
             entry   = entry with { UnknownB = unknownB };

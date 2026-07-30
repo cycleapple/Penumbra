@@ -129,7 +129,7 @@ public class FileEditor<T>(
         ImGui.SameLine();
         if (ImGuiUtil.DrawDisabledButton(FontAwesomeIcon.Save.ToIconString(), new Vector2(ImGui.GetFrameHeight()), "Export this file.",
                 _defaultFile == null, true))
-            fileDialog.OpenSavePicker($"Export {_defaultPath} to...", fileType, Path.GetFileNameWithoutExtension(_defaultPath), fileType,
+            fileDialog.OpenSavePicker($"匯出 {_defaultPath} 到...", fileType, Path.GetFileNameWithoutExtension(_defaultPath), fileType,
                 (success, name) =>
                 {
                     if (!success)
@@ -141,7 +141,7 @@ public class FileEditor<T>(
                     }
                     catch (Exception e)
                     {
-                        Penumbra.Messager.NotificationMessage(e, $"Could not export {_defaultPath}.", NotificationType.Error);
+                        Penumbra.Messager.NotificationMessage(e, $"無法匯出 {_defaultPath}。", NotificationType.Error);
                     }
                 }, getInitialPath(), false);
 

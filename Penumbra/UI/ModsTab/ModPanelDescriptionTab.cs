@@ -19,7 +19,7 @@ public class ModPanelDescriptionTab(
     private readonly TagButtons _modTags   = new();
 
     public ReadOnlySpan<byte> Label
-        => "Description"u8;
+        => "模組描述"u8;
 
     public void DrawContent()
     {

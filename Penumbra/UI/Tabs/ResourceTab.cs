@@ -17,7 +17,7 @@ public class ResourceTab(Configuration config, ResourceManagerService resourceMa
     : ITab, IUiService
 {
     public ReadOnlySpan<byte> Label
-        => "Resource Manager"u8;
+        => "資源管理器"u8;
 
     public bool IsVisible
         => config.DebugMode;

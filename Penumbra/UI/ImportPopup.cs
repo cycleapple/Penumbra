@@ -12,7 +12,7 @@ namespace Penumbra.UI;
 /// <summary> Draw the progress information for import. </summary>
 public sealed class ImportPopup : Window, IUiService
 {
-    public const string WindowLabel = "Penumbra Import Status";
+    public const string WindowLabel = "Penumbra 匯入狀態";
 
     private readonly ModImportManager _modImportManager;
 

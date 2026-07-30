@@ -165,10 +165,10 @@ public partial class ModEditWindow
 
         return (groupCount, registry.SubModUsage.Count) switch
         {
-            (0, 0)   => "(unused)",
-            (1, 1)   => "(used 1 time)",
-            (1, > 1) => $"(used {registry.SubModUsage.Count} times in 1 group)",
-            _        => $"(used {registry.SubModUsage.Count} times over {groupCount} groups)",
+            (0, 0)   => "(未使用)",
+            (1, 1)   => "(使用了 1 次)",
+            (1, > 1) => $"(在 1 組中使用了 {registry.SubModUsage.Count} 次)",
+            _        => $"(在 {groupCount} 組中使用了 {registry.SubModUsage.Count} 次)",
         };
 
         (IEnumerable<string>, int) GetMulti()
@@ -372,9 +372,9 @@ public partial class ModEditWindow
         var tt =
             "Delete all selected files entirely from your filesystem, but not their file associations in the mod.\n!!!This can not be reverted!!!";
         if (_selectedFiles.Count == 0)
-            tt += "\n\nNo files selected.";
+            tt += "\n\n尚未選取檔案。";
         else if (!active)
-            tt += $"\n\nHold {_config.DeleteModModifier} to delete.";
+            tt += $"\n\n按住 {_config.DeleteModModifier} 鍵並按一下以刪除。";
 
         if (ImGuiUtil.DrawDisabledButton("Delete Selected Files", Vector2.Zero, tt, _selectedFiles.Count == 0 || !active))
             _editor.FileEditor.DeleteFiles(_editor.Mod!, _editor.Option!, _editor.Files.Available.Where(_selectedFiles.Contains));

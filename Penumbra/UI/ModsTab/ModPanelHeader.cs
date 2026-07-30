@@ -100,7 +100,7 @@ public class ModPanelHeader : IDisposable
             _modWebsite = _mod.Website;
             _websiteValid = Uri.TryCreate(_modWebsite, UriKind.Absolute, out var uriResult)
              && (uriResult.Scheme == Uri.UriSchemeHttps || uriResult.Scheme == Uri.UriSchemeHttp);
-            _modWebsiteButton = _websiteValid ? "Open Website" : _modWebsite.Length == 0 ? string.Empty : $"from  {_modWebsite}";
+            _modWebsiteButton = _websiteValid ? "開啟網站" : _modWebsite.Length == 0 ? string.Empty : $"來自  {_modWebsite}";
             _modWebsiteButtonWidth = _websiteValid
                 ? ImGui.CalcTextSize(_modWebsiteButton).X + 2 * ImGui.GetStyle().FramePadding.X
                 : ImGui.CalcTextSize(_modWebsiteButton).X;

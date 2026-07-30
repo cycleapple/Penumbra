@@ -13,7 +13,7 @@ public class PenumbraChangelog : IUiService
     public PenumbraChangelog(Configuration config)
     {
         _config   = config;
-        Changelog = new Changelog("Penumbra Changelog", ConfigData, Save);
+        Changelog = new Changelog("Penumbra 更新日誌", ConfigData, Save);
 
         Add5_7_0(Changelog);
         Add5_7_1(Changelog);

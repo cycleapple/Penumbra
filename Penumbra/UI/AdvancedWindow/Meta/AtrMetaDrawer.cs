@@ -39,7 +39,7 @@ public sealed class AtrMetaDrawer(ModMetaEditor editor, MetaFileManager metaFile
     protected override void DrawNew()
     {
         ImGui.TableNextColumn();
-        CopyToClipboardButton("Copy all current ATR manipulations to clipboard."u8,
+        CopyToClipboardButton("將目前所有 ATR 操作複製到剪貼簿。"u8,
             new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Atr)));
 
         ImGui.TableNextColumn();

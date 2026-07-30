@@ -55,7 +55,7 @@ public sealed class CollectionsTab : IDisposable, ITab, IUiService
     }
 
     public ReadOnlySpan<byte> Label
-        => "Collections"u8;
+        => "收藏集設定"u8;
 
     public void DrawContent()
     {

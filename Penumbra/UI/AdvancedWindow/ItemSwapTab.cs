@@ -89,7 +89,7 @@ public class ItemSwapTab : IDisposable, ITab, IUiService
     }
 
     public ReadOnlySpan<byte> Label
-        => "Item Swap"u8;
+        => "物品替換"u8;
 
     public void DrawContent()
     {
@@ -386,7 +386,7 @@ public class ItemSwapTab : IDisposable, ITab, IUiService
         }
         catch (Exception e)
         {
-            Penumbra.Messager.NotificationMessage(e, "Could not create new Swap Option.", NotificationType.Error, false);
+            Penumbra.Messager.NotificationMessage(e, "無法新增替換選項。", NotificationType.Error, false);
             try
             {
                 if (createdOption != null)

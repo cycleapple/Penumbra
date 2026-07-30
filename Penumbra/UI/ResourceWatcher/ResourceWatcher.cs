@@ -95,7 +95,7 @@ public sealed class ResourceWatcher : IDisposable, ITab, IUiService
     }
 
     public ReadOnlySpan<byte> Label
-        => "Resource Logger"u8;
+        => "資源日誌"u8;
 
     public void DrawContent()
     {

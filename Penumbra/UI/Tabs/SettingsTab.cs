@@ -28,7 +28,7 @@ public class SettingsTab : ITab, IUiService
     public const int RootDirectoryMaxLength = 64;
 
     public ReadOnlySpan<byte> Label
-        => "Settings"u8;
+        => "插件設定"u8;
 
     private readonly Configuration               _config;
     private readonly FontReloader                _fontReloader;
@@ -183,30 +183,30 @@ public class SettingsTab : ITab, IUiService
         }
 
         if (newName.Length > RootDirectoryMaxLength)
-            return ($"Path is too long. The maximum length is {RootDirectoryMaxLength}.", false);
+            return ($"路徑過長。最大長度為 {RootDirectoryMaxLength} 。", false);
 
         if (Path.GetDirectoryName(newName).IsNullOrEmpty())
-            return ("Path is not allowed to be a drive root. Please add a directory.", false);
+            return ("路徑不能是磁碟根目錄，請指定一個資料夾。", false);
 
         var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         if (IsSubPathOf(desktop, newName))
-            return ("Path is not allowed to be on your Desktop.", false);
+            return ("路徑不允許放在桌面。", false);
 
         var programFiles    = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         var programFilesX86 = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
         if (IsSubPathOf(programFiles, newName) || IsSubPathOf(programFilesX86, newName))
-            return ("Path is not allowed to be in ProgramFiles.", false);
+            return ("路徑不能位於 Program Files。", false);
 
         var dalamud = _pluginInterface.ConfigDirectory.Parent!.Parent!;
         if (IsSubPathOf(dalamud.FullName, newName))
-            return ("Path is not allowed to be inside your Dalamud directories.", false);
+            return ("路徑不能位於 Dalamud 資料夾內。", false);
 
         if (Functions.GetDownloadsFolder(out var downloads) && IsSubPathOf(downloads, newName))
-            return ("Path is not allowed to be inside your Downloads folder.", false);
+            return ("路徑不允許放在下載資料夾。", false);
 
         var gameDir = _gameData.GameData.DataPath.Parent!.Parent!.FullName;
         if (IsSubPathOf(gameDir, newName))
-            return ("Path is not allowed to be inside your game folder.", false);
+            return ("路徑不能位於遊戲資料夾內。", false);
 
         return selected
             ? ($"Press Enter or Click Here to Save (Current Directory: {old})", true)
@@ -235,7 +235,7 @@ public class SettingsTab : ITab, IUiService
                 ? _config.ModDirectory
                 : ".";
 
-        _fileDialog.OpenFolderPicker("Choose Mod Directory", (b, s) => _newModDirectory = b ? s : _newModDirectory, startDir, false);
+        _fileDialog.OpenFolderPicker("選擇模組資料夾", (b, s) => _newModDirectory = b ? s : _newModDirectory, startDir, false);
     }
 
     /// <summary>
@@ -661,7 +661,7 @@ public class SettingsTab : ITab, IUiService
                     ? _config.ModDirectory
                     : null;
 
-            _fileDialog.OpenFolderPicker("Choose Default Import Directory", (b, s) =>
+            _fileDialog.OpenFolderPicker("選擇預設匯入資料夾", (b, s) =>
             {
                 if (!b)
                     return;
@@ -700,7 +700,7 @@ public class SettingsTab : ITab, IUiService
                 : Directory.Exists(_config.ModDirectory)
                     ? _config.ModDirectory
                     : null;
-            _fileDialog.OpenFolderPicker("Choose Default Export Directory", (b, s) =>
+            _fileDialog.OpenFolderPicker("選擇預設匯出資料夾", (b, s) =>
             {
                 if (b)
                     _modExportManager.UpdateExportDirectory(s);

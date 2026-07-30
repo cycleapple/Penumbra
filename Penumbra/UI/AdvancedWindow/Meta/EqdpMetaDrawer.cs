@@ -35,12 +35,12 @@ public sealed class EqdpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFil
     protected override void DrawNew()
     {
         ImGui.TableNextColumn();
-        CopyToClipboardButton("Copy all current EQDP manipulations to clipboard."u8, new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Eqdp)));
+        CopyToClipboardButton("將目前所有 EQDP 操作複製到剪貼簿。"u8, new Lazy<JToken?>(() => MetaDictionary.SerializeTo([], Editor.Eqdp)));
 
         ImGui.TableNextColumn();
         var validRaceCode = CharacterUtilityData.EqdpIdx(Identifier.GenderRace, false) >= 0;
         var canAdd        = validRaceCode && !Editor.Contains(Identifier);
-        var tt = canAdd   ? "Stage this edit."u8 :
+        var tt = canAdd   ? "編輯此項。"u8 :
             validRaceCode ? "This entry is already edited."u8 : "This combination of race and gender can not be used."u8;
         if (ImUtf8.IconButton(FontAwesomeIcon.Plus, tt, disabled: !canAdd))
             Editor.Changes |= Editor.TryAdd(Identifier, Entry);
@@ -110,14 +110,14 @@ public sealed class EqdpMetaDrawer(ModMetaEditor editor, MetaFileManager metaFil
         var       changes = false;
         using var dis     = ImRaii.Disabled(disabled);
         ImGui.TableNextColumn();
-        if (Checkmark("Material##eqdp"u8, "\0"u8, entry.Material, defaultEntry.Material, out var newMaterial))
+        if (Checkmark("材質##eqdp"u8, "\0"u8, entry.Material, defaultEntry.Material, out var newMaterial))
         {
             entry   = entry with { Material = newMaterial };
             changes = true;
         }
 
         ImGui.SameLine();
-        if (Checkmark("Model##eqdp"u8, "\0"u8, entry.Model, defaultEntry.Model, out var newModel))
+        if (Checkmark("模型##eqdp"u8, "\0"u8, entry.Model, defaultEntry.Model, out var newModel))
         {
             entry   = entry with { Model = newModel };
             changes = true;

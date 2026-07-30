@@ -51,7 +51,7 @@ public class LaunchButton : IDisposable, IUiService
         {
             // TODO: update when API updated.
             var icon = _textureProvider.GetFromFile(_fileName);
-            _entry = _title.AddEntry("Manage Penumbra", icon, OnTriggered);
+            _entry = _title.AddEntry("管理 Penumbra", icon, OnTriggered);
 
             _uiBuilder.Draw -= CreateEntry;
         }
