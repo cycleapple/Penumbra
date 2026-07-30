@@ -4,8 +4,8 @@
         <Company>absolute gangstas</Company>
         <Product>Penumbra</Product>
         <Copyright>Copyright © 2025</Copyright>
-        <FileVersion>1.5.1.25</FileVersion>
-        <AssemblyVersion>1.5.1.25</AssemblyVersion>
+        <FileVersion>1.5.1.26</FileVersion>
+        <AssemblyVersion>1.5.1.26</AssemblyVersion>
         <OutputPath>bin\$(Configuration)\</OutputPath>
     </PropertyGroup>
 
