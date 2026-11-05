@@ -8,7 +8,7 @@
     "RepoUrl": "https://github.com/cycleapple/Penumbra/tree/api13-tw-1.5.1",
     "ApplicableVersion": "any",
     "Tags": [ "modding" ],
-    "DalamudApiLevel": 13,
+    "DalamudApiLevel": 14,
     "LoadPriority": 69420,
     "LoadRequiredState": 2,
     "LoadSync": true,

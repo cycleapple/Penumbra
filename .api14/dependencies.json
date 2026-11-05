@@ -1,0 +1,32 @@
+[
+  {
+    "path": "OtterGui",
+    "baseCommit": "4a9b71a93e76aa5eed818542288329e34ec0dd89",
+    "patch": "patches/fa3971c4e08c8077.patch",
+    "sha256": "3cca454cae7e6b11447342ab2e4c7aaef4e252d6336c2215a9e2bcd11a12dcae"
+  },
+  {
+    "path": "Penumbra.Api",
+    "baseCommit": "953dd227afda6b3943b0b88cc965d8aee8a879b5",
+    "patch": "patches/4b4086828078f567.patch",
+    "sha256": "6c6dd3aa9ad7803a86c645c5ca6b07d50a10dc183e8f4f82b2ded551738ccf70"
+  },
+  {
+    "path": "Penumbra.GameData",
+    "baseCommit": "34382a2145de854f307abc08a6e54e35ef322dd6",
+    "patch": "patches/f6338eaa6408f2f0.patch",
+    "sha256": "dd64f62e1e2cf8fda00eee39bb4446fcb5cdc2ea54a06c9dfe85040cd0b98ada"
+  },
+  {
+    "path": "Penumbra.String",
+    "baseCommit": "878acce46e286867d6ef1f8ecedb390f7bac34fd",
+    "patch": "patches/d6a0ce20a148a090.patch",
+    "sha256": "64dc9985c3014121c82f1d1c699db1fc9665bf7367235f8513f3893bb6325fb5"
+  },
+  {
+    "path": "OtterGui/OtterGuiInternal",
+    "baseCommit": "49631aab5c267953f9d442546488ea3bfdf52fa7",
+    "patch": "patches/83d6c41b4082a781.patch",
+    "sha256": "9997cf5bc08788acb336cb58a8405138ba9a14a407dd295f4ccbd1bd4cafd5a1"
+  }
+]

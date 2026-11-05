@@ -1,4 +1,4 @@
-<Project Sdk="Dalamud.NET.Sdk/13.0.0">
+<Project Sdk="Dalamud.NET.Sdk/14.0.1">
     <PropertyGroup>
         <AssemblyTitle>Penumbra</AssemblyTitle>
         <Company>absolute gangstas</Company>
@@ -40,18 +40,6 @@
             <HintPath>$(DalamudLibPath)Iced.dll</HintPath>
             <Private>False</Private>
         </Reference>
-        <Reference Include="SharpDX">
-            <HintPath>$(DalamudLibPath)SharpDX.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="SharpDX.Direct3D11">
-            <HintPath>$(DalamudLibPath)SharpDX.Direct3D11.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="SharpDX.DXGI">
-            <HintPath>$(DalamudLibPath)SharpDX.DXGI.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
         <Reference Include="OtterTex.dll">
             <HintPath>lib\OtterTex.dll</HintPath>
         </Reference>
@@ -84,4 +72,10 @@
             <InformationalVersion>$(GitCommitHash)</InformationalVersion>
         </PropertyGroup>
     </Target>
+    <!-- API14 no longer ships SharpDX; retain these private dependencies until the TerraFX conversion. -->
+    <ItemGroup>
+        <PackageReference Include="SharpDX" Version="4.2.0" />
+        <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+        <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    </ItemGroup>
 </Project>

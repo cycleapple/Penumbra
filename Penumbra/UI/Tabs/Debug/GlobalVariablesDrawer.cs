@@ -178,10 +178,10 @@ public unsafe class GlobalVariablesDrawer(
             if (_schedulerFilterMap.Length is 0 || resource->Name.Buffer.IndexOf(_schedulerFilterMapU8.Span) >= 0)
             {
                 ImUtf8.DrawTableColumn($"[{total:D4}]");
-                ImUtf8.DrawTableColumn($"{resource->Name.Unk1}");
+                ImUtf8.DrawTableColumn("API14: private field");
                 ImUtf8.DrawTableColumn(new CiByteString(resource->Name.Buffer, MetaDataComputation.None).Span);
                 ImUtf8.DrawTableColumn($"{resource->Consumers}");
-                ImUtf8.DrawTableColumn($"{resource->Unk1}"); // key
+                ImUtf8.DrawTableColumn("API14: private field"); // key
                 ImGui.TableNextColumn();
                 Penumbra.Dynamis.DrawPointer(resource);
                 ImGui.TableNextColumn();
@@ -227,10 +227,10 @@ public unsafe class GlobalVariablesDrawer(
             if (_schedulerFilterList.Length is 0 || resource->Name.Buffer.IndexOf(_schedulerFilterListU8.Span) >= 0)
             {
                 ImUtf8.DrawTableColumn($"[{total:D4}]");
-                ImUtf8.DrawTableColumn($"{resource->Name.Unk1}");
+                ImUtf8.DrawTableColumn("API14: private field");
                 ImUtf8.DrawTableColumn(new CiByteString(resource->Name.Buffer, MetaDataComputation.None).Span);
                 ImUtf8.DrawTableColumn($"{resource->Consumers}");
-                ImUtf8.DrawTableColumn($"{resource->Unk1}"); // key
+                ImUtf8.DrawTableColumn("API14: private field"); // key
                 ImGui.TableNextColumn();
                 Penumbra.Dynamis.DrawPointer(resource);
                 ImGui.TableNextColumn();
