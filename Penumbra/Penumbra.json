@@ -4,7 +4,7 @@
     "Punchline": "Runtime mod loader and manager.",
     "Description": "Runtime mod loader and manager.",
     "InternalName": "Penumbra",
-    "AssemblyVersion": "1.5.1.26",
+    "AssemblyVersion": "1.5.1.27",
     "RepoUrl": "https://github.com/cycleapple/Penumbra/tree/api13-tw-1.5.1",
     "ApplicableVersion": "any",
     "Tags": [ "modding" ],
@@ -13,5 +13,5 @@
     "LoadRequiredState": 2,
     "LoadSync": true,
     "IconUrl": "https://raw.githubusercontent.com/xivdev/Penumbra/master/images/icon.png",
-    "Changelog": "修正台服指定世界與目前目標無法辨識玩家：更新共享世界字典版本、優先接受台服世界列，並保留 live-object 與既有收藏的世界識別。"
+    "Changelog": "補上裝備分類 23（身體、佔用腿部），修正拉姆札外衣未出現在裝備清單及辨識資料的問題；保留既有台服角色辨識修正。"
 }
